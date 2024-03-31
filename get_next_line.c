@@ -117,21 +117,23 @@ char	*get_next_line(int fd)
 	return (result);
 }
 
-//int main()
-//{
-//	int fd;
-//	fd = open("sample.txt", O_RDONLY);
-//	char *str = get_next_line(fd);
-//	if (str == NULL)
-//	{
-//		printf("Error");
-//	}
-//	printf("%s", str);
-//	free(str);
-//	str = get_next_line(fd);
-//	printf("%s", str);
-//	free(str);
-//	str = get_next_line(fd);
-//	printf("%s", str);
-//	free(str);
-//}
+
+int main()
+{
+	int fd;
+	fd = open("test.txt", O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error opening file\n");
+		return (1);
+	}
+
+	char *str;
+	while ((str = get_next_line(fd)) != NULL)
+	{
+		printf("%s", str);
+		free(str);
+	}
+	close(fd);
+	return 0;
+}
